@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update CSS With JS</title>
+</head>
+<style>
+    :root {
+        --spacing: 10px;
+        --blur: 2px;
+        --base: rgb(5, 163, 11);
+    }
+
+    * {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+    }
+    body {
+        background-color: #4444;
+        width: 100%;
+        min-height: 100vh;
+        align-items: center;
+    }
+    h1 {
+        font-size: 45px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-weight: 800;  
+        margin: 10px;      
+    }
+    span {
+        color: var(--base);
+
+    }
+    .main {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+    }
+    img {
+        width: 600px;
+        padding: var(--spacing);
+        background-color: var(--base);
+        filter: blur(var(--blur));
+    }
+    .controls {
+        margin: 10px;
+    }
+</style>
+<body>
+<div class="main">
+
+    <h1>Update CSS With <span>JS</span></h1>
+
+    <div class="controls">
+
+        <label for="spacing">Spacing: </label>
+        <input type="range" name="spacing" class="spacing" value="10" max="200" min="10" data-sizing="px">
+
+        <label for="range">Range: </label>
+        <input type="range" name="blur" class="blur" value="10" max="25" min="0" data-sizing="px">
+
+        <label for="color">Color: </label>
+        <input type="color" name="base" value="#ffc600">
+    </div>
+
+    <div class="i">
+
+        <img src="https://images.freeimages.com/variants/dCtGqnkaXyMXANAfshdUTU3H/f4a36f6589a0e50e702740b15352bc00e4bfaf6f58bd4db850e167794d05993d" alt="IDK">
+
+    </div>
+</div>
+    <script>
+        const inputs = document.querySelectorAll(".controls input");
+
+        function changeHandler () {
+            const suf = this.dataset.sizing || '';
+            document.documentElement.style.setProperty(`--${this.name}`, `${this.value}`+ `${suf}`)
+        }
+
+        inputs.forEach(input => input.addEventListener("change", changeHandler));
+        inputs.forEach(input => input.addEventListener("mousemove", changeHandler));
+    </script>
+</body>
+</html>
+<! -- cryptomafiaPB -->
